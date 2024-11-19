@@ -1,10 +1,15 @@
 from imp import *
+from database import DataBase
 
 class TelebotClass:
-    
-    def __init__(self, token) -> None:
+# token    
+    def __init__(self, token, db_name, table_name) -> None:
         self.bot = telebot.TeleBot(token)
         self.cash_data = 0
+
+        self.db = DataBase(db_name)
+        self.db.create_table(table_name)
+        self.db.insert_data(table_name, "BrawlStars", "gems", 999, 1 )
 
         self.bot.message_handler(commands=['start'])(self.lobby)
         self.bot.callback_query_handler(func=lambda call: True)(self.inline_message_handler)
