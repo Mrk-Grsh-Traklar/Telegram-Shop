@@ -1,17 +1,13 @@
 from imp import *
-from database import DataBase
 
 class TelebotClass:
 # token    
-    def __init__(self, token, db_name, table_name) -> None:
+    def __init__(self, token) -> None:
         self.bot = telebot.TeleBot(token)
         self.cash_data = 0
 
-        self.db = DataBase(db_name)
-        self.db.create_table(table_name)
-        self.db.insert_data(table_name, "BrawlStars", "gems", 999, 1 )
-
         self.bot.message_handler(commands=['start'])(self.lobby)
+        self.bot.message_handler(commands=['admin'])(self.Admin)
         self.bot.callback_query_handler(func=lambda call: True)(self.inline_message_handler)
 
 
@@ -23,6 +19,7 @@ class TelebotClass:
         shopping_cart = types.InlineKeyboardButton("Корзина🛒", callback_data="shopping_cart_button")
         support = types.InlineKeyboardButton("Поддержка⚙", callback_data="support_button")
         keyboard.add(products,profile,Revocation, shopping_cart,support)
+        # print(message)
 
         self.bot.send_message(message.chat.id, "Вы в главном меню", reply_markup=keyboard)
 
@@ -150,7 +147,8 @@ class TelebotClass:
         keyboard = types.InlineKeyboardMarkup(row_width=2)
         back_product = types.InlineKeyboardButton("Назад", callback_data="back_button")
         keyboard.add(back_product)
-        self.bot.send_message(message.chat.id, f'lorem ipsum', reply_markup=keyboard)
+        user = message.from_user.id
+        self.bot.send_message(message.chat.id, f'{user}', reply_markup=keyboard)
 
 
 
@@ -235,6 +233,163 @@ class TelebotClass:
             case 'Revocation_button':
                 self.delete_msg(call.message)
                 self.Revocation(call.message)
+            case "table_button":
+                self.delete_msg(call.message)
+                self.create_table(call.message)
+            case "user_table_button":
+                self.delete_msg(call.message)
+                self.user_table_panel(call.message)
+            case "delite_user_table_button":
+                self.delete_msg(call.message)
+                self.delite_user_table(call.message)
+            case "admin_button":
+                self.delete_msg(call.message)
+                self.Admin(call.message)
+            case "Update_user_table_button":
+                self.delete_msg(call.message)
+                self.Update_user_table(call.message)
+            case "product_table_button":
+                self.delete_msg(call.message)
+                self.product_table_panel(call.message)
+            case "Update_Product_table_button":
+                self.delete_msg(call.message)
+                self.Update_product_table(call.message)
+            case "delite_Product_table_button":
+                self.delete_msg(call.message)
+                self.delite_Product_table(call.message)
+
+
+
+
+    def create_table(self, message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        admin_back_up = types.InlineKeyboardButton("В главное меню", callback_data="admin_button")
+        Products_table = types.InlineKeyboardButton("Product table🗃", callback_data="product_table_button")
+        User_table = types.InlineKeyboardButton("User table🗃", callback_data="user_table_button")
+        keyboard.add(Products_table,User_table,admin_back_up)
+        self.bot.send_message(message.chat.id, f'Добро пожаловать', reply_markup=keyboard)
+
+        con = sqlite3.connect("main.db")
+        cursor = con.cursor()
+        cursor.execute(f"""CREATE TABLE IF NOT EXISTS Products
+                (id INTEGER PRIMARY KEY AUTOINCREMENT,  
+                Category TEXT,
+                name TEXT,
+                cost INTEGER,
+                nalichie INTEGER)
+            """) 
+        
+        cursor.execute(f"""CREATE TABLE IF NOT EXISTS user
+            (id INTEGER PRIMARY KEY AUTOINCREMENT,  
+            name TEXT,
+            Chat_id INTEGER)
+        """)
+   
+    def user_table_panel(self, message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        admin_back_up = types.InlineKeyboardButton("В главное меню", callback_data="admin_button")
+        delite_User_table = types.InlineKeyboardButton("delite", callback_data="delite_user_table_button")
+        Update_User_table = types.InlineKeyboardButton("Update", callback_data="Update_user_table_button")
+        keyboard.add(delite_User_table,Update_User_table,admin_back_up)
+        self.bot.send_message(message.chat.id, f'Добро пожаловать', reply_markup=keyboard) 
+
+
+
+
+    def delite_user_table(self,message):
+        con = sqlite3.connect("main.db")
+        cursor = con.cursor()
+        cursor.execute(f"""DROP TABLE user""")
+        keyboard = types.InlineKeyboardMarkup(row_width=1)
+        admin_back_up = types.InlineKeyboardButton("В главное меню", callback_data="admin_button")
+        keyboard.add(admin_back_up)
+        self.bot.send_message(message.chat.id, f'таблица user удалена', reply_markup=keyboard) 
+        
+    def Update_user_table(self,message):
+        con = sqlite3.connect("main.db")
+        cursor = con.cursor()
+        params = [
+            ("srydgthufh", 2335434),
+            ("sryufhssd", 135434),
+            ("sryufh", 12335434),
+            ("sryasdfufh", 12434),
+            ("sryugjsfh", 123334),
+            ("sryuudgfh", 1235434),
+            ("sryuffsgcmghndfgjkndh", 123354)
+        ]
+
+        for i in params:
+            cursor.execute(f"INSERT INTO user (name, id) VALUES (?, ?)", i)
+        con.commit()        
+
+
+    # def get_user_data(self,message):
+    #     self.insert_data(self.table_name,message.from_user.first_name,message.chat.id)
+
+    def product_table(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        admin_back_up = types.InlineKeyboardButton("В главное меню", callback_data="admin_button")
+        delit_table = types.InlineKeyboardButton("delite", callback_data="delite_product_table_button")
+        Update_table = types.InlineKeyboardButton("Update", callback_data="Update_product_table_button")
+        keyboard.add(delit_table,Update_table,admin_back_up)
+        self.bot.send_message(message.chat.id, f'Добро пожаловать', reply_markup=keyboard) 
+        
+    def product_table_panel(self, message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        admin_back_up = types.InlineKeyboardButton("В главное меню", callback_data="admin_button")
+        delite_User_table = types.InlineKeyboardButton("delite", callback_data="delite_user_table_button")
+        Update_User_table = types.InlineKeyboardButton("Update", callback_data="Update_user_table_button")
+        keyboard.add(delite_User_table,Update_User_table,admin_back_up)
+        self.bot.send_message(message.chat.id, f'Добро пожаловать', reply_markup=keyboard) 
+
+    def delite_product_table(self,message):
+        con = sqlite3.connect("main.db")
+        cursor = con.cursor()
+        cursor.execute(f"""DROP TABLE Products""")
+        keyboard = types.InlineKeyboardMarkup(row_width=1)
+        admin_back_up = types.InlineKeyboardButton("В главное меню", callback_data="admin_button")
+        keyboard.add(admin_back_up)
+        self.bot.send_message(message.chat.id, f'таблица user удалена', reply_markup=keyboard) 
+        
+    def Update_product_table(self,message):
+        con = sqlite3.connect("main.db")
+        cursor = con.cursor()
+        params = [
+            ("srydgthufh", 2335434),
+            ("sryufhssd", 135434),
+            ("sryufh", 12335434),
+            ("sryasdfufh", 12434),
+            ("sryugjsfh", 123334),
+            ("sryuudgfh", 1235434),
+            ("sryuffsgcmghndfgjkndh", 123354)
+        ]
+
+        for i in params:
+            cursor.execute(f"INSERT INTO user (name, id) VALUES (?, ?)", i)
+        con.commit()        
+
+
+            
+    def Admin(self,message):
+        user = message.from_user.username
+        print(user)
+        if user == "AssMaser":
+            keyboard = types.InlineKeyboardMarkup(row_width=2)
+            back_up = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")
+            delite_product= types.InlineKeyboardButton("Очистить корзину", callback_data="delite_product_button")
+            table = types.InlineKeyboardButton("table🗃", callback_data="table_button")
+            keyboard.add(table,delite_product,back_up)
+            self.bot.send_message(message.chat.id, f'Добро пожаловать', reply_markup=keyboard)
+        elif user != "AssMaser":
+            keyboard = types.InlineKeyboardMarkup(row_width=2)
+            back_up = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")
+            keyboard.add(back_up)
+            self.bot.send_message(message.chat.id, f'У вас нет прав администратора :(', reply_markup=keyboard)
+            
+               
+            
+        
+
 
 
     def run(self):
