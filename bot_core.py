@@ -251,10 +251,10 @@ class TelebotClass:
             case "product_table_button":
                 self.delete_msg(call.message)
                 self.product_table_panel(call.message)
-            case "Update_Product_table_button":
+            case "Update_product_table_button":
                 self.delete_msg(call.message)
                 self.Update_product_table(call.message)
-            case "delite_Product_table_button":
+            case "delite_product_table_button":
                 self.delete_msg(call.message)
                 self.delite_Product_table(call.message)
 
@@ -297,7 +297,7 @@ class TelebotClass:
 
 
     def delite_user_table(self,message):
-        con = sqlite3.connect("main.db")
+        con = sqlite3.connect("main.db") 
         cursor = con.cursor()
         cursor.execute(f"""DROP TABLE user""")
         keyboard = types.InlineKeyboardMarkup(row_width=1)
@@ -306,6 +306,11 @@ class TelebotClass:
         self.bot.send_message(message.chat.id, f'таблица user удалена', reply_markup=keyboard) 
         
     def Update_user_table(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=1)
+        admin_back_up = types.InlineKeyboardButton("В главное меню", callback_data="admin_button")
+        keyboard.add(admin_back_up)      
+        self.bot.send_message(message.chat.id, f'таблица Products удалена', reply_markup=keyboard) 
+
         con = sqlite3.connect("main.db")
         cursor = con.cursor()
         params = [
@@ -337,42 +342,48 @@ class TelebotClass:
     def product_table_panel(self, message):
         keyboard = types.InlineKeyboardMarkup(row_width=2)
         admin_back_up = types.InlineKeyboardButton("В главное меню", callback_data="admin_button")
-        delite_User_table = types.InlineKeyboardButton("delite", callback_data="delite_user_table_button")
-        Update_User_table = types.InlineKeyboardButton("Update", callback_data="Update_user_table_button")
-        keyboard.add(delite_User_table,Update_User_table,admin_back_up)
+        delite_table = types.InlineKeyboardButton("delite", callback_data="delite_product_table_button")
+        Update_table = types.InlineKeyboardButton("Update", callback_data="Update_product_table_button")
+        keyboard.add(delite_table,Update_table,admin_back_up)
         self.bot.send_message(message.chat.id, f'Добро пожаловать', reply_markup=keyboard) 
 
-    def delite_product_table(self,message):
+    def delite_Product_table(self,message):
         con = sqlite3.connect("main.db")
         cursor = con.cursor()
         cursor.execute(f"""DROP TABLE Products""")
         keyboard = types.InlineKeyboardMarkup(row_width=1)
         admin_back_up = types.InlineKeyboardButton("В главное меню", callback_data="admin_button")
         keyboard.add(admin_back_up)
-        self.bot.send_message(message.chat.id, f'таблица user удалена', reply_markup=keyboard) 
+        self.bot.send_message(message.chat.id, f'таблица Products удалена', reply_markup=keyboard) 
         
     def Update_product_table(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=1)
+        admin_back_up = types.InlineKeyboardButton("В главное меню", callback_data="admin_button")
+        keyboard.add(admin_back_up)      
+        self.bot.send_message(message.chat.id, f'таблица Products обновлена', reply_markup=keyboard) 
+                                                    
         con = sqlite3.connect("main.db")
         cursor = con.cursor()
         params = [
-            ("srydgthufh", 2335434),
-            ("sryufhssd", 135434),
-            ("sryufh", 12335434),
-            ("sryasdfufh", 12434),
-            ("sryugjsfh", 123334),
-            ("sryuudgfh", 1235434),
-            ("sryuffsgcmghndfgjkndh", 123354)
+            ("BrawlSrars","gems", 999, 1 ),
+            ("BrawlSrars","gems", 999, 1 )
+            # ("sryufhssd", 135434),
+            # ("sryufh", 12335434),
+            # ("sryasdfufh", 12434),
+            # ("sryugjsfh", 123334),
+            # ("sryuudgfh", 1235434),
+            # ("sryuffsgcmghndfgjkndh", 123354)
         ]
 
         for i in params:
-            cursor.execute(f"INSERT INTO user (name, id) VALUES (?, ?)", i)
-        con.commit()        
+            cursor.execute(f"INSERT INTO Products (Category, name, cost, nalichie) VALUES (?,?,?,?)", i)
+        con.commit()  
+
 
 
             
     def Admin(self,message):
         user = message.from_user.username
-        print(user)
         if user == "AssMaser":
             keyboard = types.InlineKeyboardMarkup(row_width=2)
             back_up = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")
@@ -380,7 +391,7 @@ class TelebotClass:
             table = types.InlineKeyboardButton("table🗃", callback_data="table_button")
             keyboard.add(table,delite_product,back_up)
             self.bot.send_message(message.chat.id, f'Добро пожаловать', reply_markup=keyboard)
-        elif user != "AssMaser":
+        else:
             keyboard = types.InlineKeyboardMarkup(row_width=2)
             back_up = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")
             keyboard.add(back_up)
