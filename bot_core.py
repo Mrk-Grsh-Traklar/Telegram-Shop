@@ -11,6 +11,7 @@ class TelebotClass:
         self.bot.callback_query_handler(func=lambda call: True)(self.inline_message_handler)
 
 
+
     def lobby(self, message):
         keyboard = types.InlineKeyboardMarkup()
         products = types.InlineKeyboardButton("Продукты🎮", callback_data="products_button")
@@ -91,21 +92,309 @@ class TelebotClass:
 
     def Brawlstars(self,message):
         keyboard = types.InlineKeyboardMarkup(row_width=2)
+        gems30 = types.InlineKeyboardButton("💎30 гемов💎", callback_data="gems30_button")
+        gems80 = types.InlineKeyboardButton("💎80 гемов💎", callback_data="gems80_button")
+        gems170 = types.InlineKeyboardButton("💎170 гемов💎", callback_data="gems170_button")
+        gems360 = types.InlineKeyboardButton("💎360 гемов💎", callback_data="gems360_button")
+        gems950 = types.InlineKeyboardButton("💎950 гемов💎", callback_data="gems950_button")
+        gems2000 = types.InlineKeyboardButton("💎2000 гемов💎", callback_data="gems2000_button")
+        BrawlPass = types.InlineKeyboardButton("🎟Brawl Pass🎟", callback_data="BrawlPass_button")
         back_product = types.InlineKeyboardButton("Назад", callback_data="back_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(gems30,gems80,gems170,gems360,gems950,gems2000,BrawlPass)
         keyboard.add(back_product)
-        self.bot.send_message(message.chat.id, f'lorem ipsum', reply_markup=keyboard)
+        keyboard.add(product11)
+        self.bot.send_message(message.chat.id, (f'Выберите услугу:'), reply_markup=keyboard)
+
+    def gems30(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+        go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+        back_product = types.InlineKeyboardButton("Назад🔙", callback_data="brawlstars_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(buy,go_shoping_cart,back_product)
+        keyboard.add(product11)
+        name = ('💎30 гемов💎')
+        cost = ('410')
+        template = [f'''
+{name} 
+💰 Цена: {cost} рублей
+'''] 
+        self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
+
+    def gems80(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+        go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+        back_product = types.InlineKeyboardButton("Назад🔙", callback_data="brawlstars_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(buy,go_shoping_cart,back_product)
+        keyboard.add(product11)
+        name = ('💎80 гемов💎')
+        cost = ('888')
+        template = [f'''
+{name}
+💰 Цена: {cost} рублей
+'''] 
+        self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
+
+    def gems170(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+        go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+        back_product = types.InlineKeyboardButton("Назад🔙", callback_data="brawlstars_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(buy,go_shoping_cart,back_product)
+        keyboard.add(product11)
+        name = ('💎170 гемов💎')
+        cost = ('1776')
+        template = [f'''
+{name}
+💰 Цена: {cost} рублей
+'''] 
+        self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
+
+    def gems360(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+        go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+        back_product = types.InlineKeyboardButton("Назад🔙", callback_data="brawlstars_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(buy,go_shoping_cart,back_product)
+        keyboard.add(product11)
+        name = ('💎360 гемов💎')
+        cost = ('3279')
+        template = [f'''
+{name} 
+💰 Цена: {cost} рублей
+'''] 
+        self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
+
+    def gems950(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+        go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+        back_product = types.InlineKeyboardButton("Назад🔙", callback_data="brawlstars_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(buy,go_shoping_cart,back_product)
+        keyboard.add(product11)
+        name = ('💎950 гемов💎')
+        cost = ('7514')
+        template = [f'''
+{name}  
+💰 Цена: {cost} рублей
+'''] 
+        self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
+
+    def gems2000(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+        go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+        back_product = types.InlineKeyboardButton("Назад🔙", callback_data="brawlstars_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(buy,go_shoping_cart,back_product)
+        keyboard.add(product11)
+        name = ('💎2000 гемов💎')
+        cost = ('15028')
+        template = [f'''
+{name} 
+💰 Цена: {cost} рублей
+'''] 
+        self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
+
+    def BrawlPass(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+        go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+        back_product = types.InlineKeyboardButton("Назад🔙", callback_data="brawlstars_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(buy,go_shoping_cart,back_product)
+        keyboard.add(product11)
+        name = ('🎟BrawlPass🎟')
+        cost = ('1776')
+        template = [f'''
+ {name}  
+💰 Цена: {cost} рублей
+'''] 
+        self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
+
 
     def Valorant(self,message):
         keyboard = types.InlineKeyboardMarkup(row_width=2)
+        TurcAc = types.InlineKeyboardButton("👤Аккаунт(Турция)", callback_data="TurcAc_button")
+        vp475 = types.InlineKeyboardButton("🔑475 VP", callback_data="vp475_button")
+        vp1000 = types.InlineKeyboardButton("🔑1000 VP", callback_data="vp1000_button")
+        vp2050 = types.InlineKeyboardButton("🔑2050 VP", callback_data="vp2050_button")
+        vp3650  = types.InlineKeyboardButton("🔑3650 VP", callback_data="vp3650_button")
+        vp5350 = types.InlineKeyboardButton("🔑5350 VP", callback_data="vp5350_button")
+        vp11000 = types.InlineKeyboardButton("🔑11000 VP", callback_data="vp11000_button")
         back_product = types.InlineKeyboardButton("Назад", callback_data="back_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(TurcAc,vp475,vp1000,vp2050,vp3650,vp5350,vp11000)
         keyboard.add(back_product)
-        self.bot.send_message(message.chat.id, f'lorem ipsum', reply_markup=keyboard)
+        keyboard.add(product11)
+        self.bot.send_message(message.chat.id, (f'Выберите услугу:'), reply_markup=keyboard)
+
+    def TurcAc(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+        go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+        back_product = types.InlineKeyboardButton("Назад🔙", callback_data="Valorant_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(buy,go_shoping_cart,back_product)
+        keyboard.add(product11)
+        name = ('👤Аккаунт(Турция)')
+        cost = ('29')
+        template = [f'''
+ {name}  
+💰 Цена: {cost} рублей
+'''] 
+        self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
+
+    def vp475(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+        go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+        back_product = types.InlineKeyboardButton("Назад🔙", callback_data="Valorant_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(buy,go_shoping_cart,back_product)
+        keyboard.add(product11)
+        name = ('🔑475 VP')
+        cost = ('337')
+        template = [f'''
+ {name}  
+💰 Цена: {cost} рублей
+'''] 
+        self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
     
+    def vp1000(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+        go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+        back_product = types.InlineKeyboardButton("Назад🔙", callback_data="Valorant_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(buy,go_shoping_cart,back_product)
+        keyboard.add(product11)
+        name = ('🔑1000 VP')
+        cost = ('769')
+        template = [f'''
+ {name}  
+💰 Цена: {cost} рублей
+'''] 
+        self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
+
+    def vp3650(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+        go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+        back_product = types.InlineKeyboardButton("Назад🔙", callback_data="Valorant_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(buy,go_shoping_cart,back_product)
+        keyboard.add(product11)
+        name = ('🔑3650 VP')
+        cost = ('1399')
+        template = [f'''
+ {name}  
+💰 Цена: {cost} рублей
+'''] 
+        self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
+
+    def vp5350(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+        go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+        back_product = types.InlineKeyboardButton("Назад🔙", callback_data="Valorant_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(buy,go_shoping_cart,back_product)
+        keyboard.add(product11)
+        name = ('🔑5350 VP')
+        cost = ('3441')
+        template = [f'''
+ {name}  
+💰 Цена: {cost} рублей
+'''] 
+        self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
+
+    def vp11000(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+        go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+        back_product = types.InlineKeyboardButton("Назад🔙", callback_data="Valorant_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(buy,go_shoping_cart,back_product)
+        keyboard.add(product11)
+        name = ('🔑11000 VP')
+        cost = ('6850')
+        template = [f'''
+ {name}  
+💰 Цена: {cost} рублей
+'''] 
+        self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
+
+    
+
+
     def Fortnite(self,message):
         keyboard = types.InlineKeyboardMarkup(row_width=2)
-        back_product = types.InlineKeyboardButton("Назад", callback_data="back_button")
+        Vb2800 = types.InlineKeyboardButton("💰2800 Vb", callback_data="Vb2800_button")
+        Vb5000 = types.InlineKeyboardButton("💰5000 Vb", callback_data="Vb5000_button")
+        Vb13500 = types.InlineKeyboardButton("💰13500 Vb", callback_data="Vb13500_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")  
+        back_product = types.InlineKeyboardButton("Назад", callback_data="back_button")    
+        keyboard.add(Vb2800, Vb5000, Vb13500)
         keyboard.add(back_product)
-        self.bot.send_message(message.chat.id, f'lorem ipsum', reply_markup=keyboard)
+        keyboard.add(product11)
+        self.bot.send_message(message.chat.id, (f'Выберите услугу:'), reply_markup=keyboard)
+
+    def Vb2800(self,message):
+            keyboard = types.InlineKeyboardMarkup(row_width=2)
+            buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+            go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+            back_product = types.InlineKeyboardButton("Назад🔙", callback_data="brawlstars_button")
+            product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+            keyboard.add(buy,go_shoping_cart,back_product)
+            keyboard.add(product11)
+            name = ('💰2800 Vb')
+            cost = ('3222')
+            template = [f'''
+    {name}  
+    💰 Цена: {cost} рублей
+    '''] 
+            self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
+
+    def Vb5000(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+        go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+        back_product = types.InlineKeyboardButton("Назад🔙", callback_data="brawlstars_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(buy,go_shoping_cart,back_product)
+        keyboard.add(product11)
+        name = ('💰5000 Vb')
+        cost = ('5125')
+        template = [f'''
+{name}  
+💰 Цена: {cost} рублей
+'''] 
+        self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
+
+    def Vb13500(self,message):
+        keyboard = types.InlineKeyboardMarkup(row_width=2)
+        buy = types.InlineKeyboardButton("Купить🛍", callback_data="buy_button")
+        go_shoping_cart = types.InlineKeyboardButton("Добавить в корзину🛒", callback_data="go_shoping_cart_button")      
+        back_product = types.InlineKeyboardButton("Назад🔙", callback_data="brawlstars_button")
+        product11 = types.InlineKeyboardButton("В главное меню", callback_data="nazad_button")      
+        keyboard.add(buy,go_shoping_cart,back_product)
+        keyboard.add(product11)
+        name = ('💰13500 Vb')
+        cost = ('11469')
+        template = [f'''
+{name}  
+💰 Цена: {cost} рублей
+'''] 
+        self.bot.send_message(message.chat.id,template, reply_markup=keyboard)
+
+
 
     def Steam(self,message):
         keyboard = types.InlineKeyboardMarkup(row_width=2)
@@ -200,12 +489,63 @@ class TelebotClass:
             case 'brawlstars_button':
                 self.delete_msg(call.message)
                 self.Brawlstars(call.message)
+            case "gems30_button":
+                self.delete_msg(call.message)
+                self.gems30(call.message)
+            case "gems80_button":
+                self.delete_msg(call.message)
+                self.gems80(call.message)
+            case "gems170_button":
+                self.delete_msg(call.message)
+                self.gems170(call.message)
+            case "gems360_button":
+                self.delete_msg(call.message)
+                self.gems360(call.message)
+            case "gems950_button":
+                self.delete_msg(call.message)
+                self.gems950(call.message)
+            case "gems2000_button":
+                self.delete_msg(call.message)
+                self.gems2000(call.message)
+            case "BrawlPass_button":
+                self.delete_msg(call.message)
+                self.BrawlPass(call.message)
             case 'Valorant_button':
                 self.delete_msg(call.message)
                 self.Valorant(call.message)
+            case 'TurcAc_button':
+                self.delete_msg(call.message)
+                self.TurcAc(call.message)
+            case 'vp475_button':
+                self.delete_msg(call.message)
+                self.vp475(call.message)
+            case 'vp1000_button':
+                self.delete_msg(call.message)
+                self.vp1000(call.message)
+            case 'vp2050_button':
+                self.delete_msg(call.message)
+                self.vp2050(call.message)
+            case 'vp3650_button':
+                self.delete_msg(call.message)
+                self.vp3650(call.message)
+            case 'vp5350_button':
+                self.delete_msg(call.message)
+                self.vp5350(call.message)
+            case 'vp11000_button':
+                self.delete_msg(call.message)
+                self.vp11000(call.message) 
             case 'Fortnite_button':
                 self.delete_msg(call.message)
                 self.Fortnite(call.message)
+            case 'Vb2800_button':
+                self.delete_msg(call.message)
+                self.Vb2800(call.message) 
+            case 'Vb5000_button':
+                self.delete_msg(call.message)
+                self.Vb5000(call.message) 
+            case 'Vb13500_button':
+                self.delete_msg(call.message)
+                self.Vb13500(call.message) 
             case 'Steam_button':
                 self.delete_msg(call.message)
                 self.Steam(call.message)
@@ -366,7 +706,7 @@ class TelebotClass:
         cursor = con.cursor()
         params = [
             ("BrawlSrars","gems", 999, 1 ),
-            ("BrawlSrars","gems", 999, 1 )
+            # ("BrawlSrars","gems", 999, 1 )
             # ("sryufhssd", 135434),
             # ("sryufh", 12335434),
             # ("sryasdfufh", 12434),
